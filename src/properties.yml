@@ -1,0 +1,7 @@
+name: ChatExport
+description: Export your Spout Chat
+author: volumetricpixels
+version: 0.1
+main: com.volumetricpixels.chatexport.ChatExport
+load: startup
+platform: SERVER
