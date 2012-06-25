@@ -23,15 +23,16 @@ public class ChatExport extends CommonPlugin {
 	public void onEnable() {
 	    // Create the directory and files as needed and load config
 	    new File(this.getDataFolder().toString()).mkdir();
-	    //TODO config...
+	        //TODO config...
 	    
 	    // Load servers
 	    activated = true;
-	    //TODO actually load stuff based on config
+	        //TODO actually load stuff based on config
 	    
 	    // Set up listeners
 	    this.getEngine().getEventManager().registerEvents(new ChatListener(), this);
-	    //TODO get this working...
+	    
+	    //TODO connect with servers that require a permanent connection
 	    
 	    // Set up commands
 	    this.getEngine().getRootCommand().addSubCommand(this.getEngine(), "chatexport").setHelp("activates and deactivates chatexport").setExecutor(new ChatExportCommand(this));
