@@ -8,7 +8,7 @@ public class ChatListener implements Listener{
     
     // If a player enters a chat message forward to other servers
     @EventHandler
-    public void PlayerChatEvent(PlayerChatEvent){
+    public void PlayerChatEvent(PlayerChatEvent event){
         String message = event.getMessage();
         //TODO
     }
