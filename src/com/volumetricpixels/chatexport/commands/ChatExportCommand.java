@@ -17,9 +17,19 @@ public class ChatExportCommand implements CommandExecutor {
      }
 
     @Override
-    public boolean processCommand(CommandSource arg0, Command arg1,
-            CommandContext arg2) throws CommandException {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean processCommand(CommandSource source, Command cmd, CommandContext args) throws CommandException {
+        
+        if(cmd.getPreferredName().compareToIgnoreCase("chatexport") == 0){
+            if(source.hasPermission("chatexport.toggle")){
+                if(ChatExport.activated == true){
+                    ChatExport.activated = false;
+                    source.sendMessage("Chat exporting deactivated");
+                }else if(ChatExport.activated == false){
+                    ChatExport.activated = true;
+                    source.sendMessage("Chat exporting reactivated");
+                }
+            }
+        }
+        return true;
     }
 }
