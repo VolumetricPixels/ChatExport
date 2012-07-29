@@ -1,7 +1,5 @@
 package com.volumetricpixels.chatexport;
 
-import java.io.File;
-
 import com.volumetricpixels.chatexport.listeners.*;
 import com.volumetricpixels.chatexport.commands.*;
 
@@ -22,7 +20,9 @@ public class ChatExport extends CommonPlugin {
 	@Override
 	public void onEnable() {
 	    // Create the directory and files as needed and load config
-	    new File(this.getDataFolder().toString()).mkdir();
+	    if (!getDataFolder().exists()) {
+	        this.getDataFolder().mkdirs();
+	    }
 	    // TODO config...
 	    
 	    // Load servers
@@ -35,7 +35,7 @@ public class ChatExport extends CommonPlugin {
 	    // TODO connect with servers that require a permanent connection
 	    
 	    // Set up commands
-	    this.getEngine().getRootCommand().addSubCommand(this.getEngine(), "chatexport").setHelp("activates and deactivates ChatExport").setExecutor(new ChatExportCommand(this));
+	    this.getEngine().getRootCommand().addSubCommand(this.getEngine(), "chatexport").setHelp("toggles ChatExport enabled").setExecutor(new ChatExportCommand());
 	    
 	    // Display loaded message
 		getLogger().info(this.getDescription().getName() + " v" + this.getDescription().getVersion() + " enabled");
