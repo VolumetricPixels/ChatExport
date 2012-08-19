@@ -6,6 +6,9 @@ import org.spout.api.event.player.PlayerChatEvent;
 
 import com.volumetricpixels.chatexport.protocols.Protocol;
 
+/**
+ * Listen and export Spout chat
+ */
 public class ChatListener implements Listener {
     
     // If a player enters a chat message forward to other servers

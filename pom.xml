@@ -71,9 +71,9 @@
             <version>dev-SNAPSHOT</version>
         </dependency>
 		<dependency>
-                <groupId>org.pircbotx</groupId>
-                <artifactId>pircbotx</artifactId>
-                <version>1.8-SNAPSHOT</version>
+            <groupId>org.pircbotx</groupId>
+            <artifactId>pircbotx</artifactId>
+            <version>1.8-SNAPSHOT</version>
         </dependency>
     </dependencies>
     
@@ -135,7 +135,7 @@
                     <properties>
                         <name>${project.name}</name>
                         <url>${project.organization.url}</url>
-                        <license>Public Protected License Version 1</license>
+                        <license>VolumetricPixels License Version 1</license>
                         <licenseUrl>http://google.com</licenseUrl>
                         <copyright>Copyright (c) ${project.inceptionYear}-2012, ${project.organization.name}</copyright>
                     </properties>

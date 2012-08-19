@@ -15,6 +15,9 @@ import com.volumetricpixels.chatexport.ChatExport;
 import com.volumetricpixels.chatexport.protocols.Protocol;
 import com.volumetricpixels.chatexport.protocols.ProtocolType;
 
+/**
+ * Represents the IRC protocol using PircBotX
+ */
 public class IRCProtocol extends Protocol {
     
     private PircBotX bot;
@@ -35,6 +38,7 @@ public class IRCProtocol extends Protocol {
             for (String s : conf.channels) {
                 bot.joinChannel(s);
             }
+            bot.sendMessage("NickServ", "id " + conf.password);
         } catch (NickAlreadyInUseException e) {
             Spout.getLogger().severe("[ChatExport] IRC nick already in use!");
         } catch (IOException e) {

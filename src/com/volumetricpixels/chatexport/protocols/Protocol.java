@@ -1,5 +1,8 @@
 package com.volumetricpixels.chatexport.protocols;
 
+/**
+ * Represents a Protocol in ChatExport
+ */
 public abstract class Protocol {
     
     private ProtocolType type;
