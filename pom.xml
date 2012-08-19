@@ -4,7 +4,7 @@
     
     <!-- Project Description -->
     <name>ChatExport</name>
-    <description>Export your Spout chat to another protocol (XMPP, Jabber, etc.)
+    <description>Export your Spout chat to another protocol (IRC, etc.)
     <url>http://volumetricpixels.com</url>
     <inceptionYear>2012</inceptionYear>
     <version>0.1-SNAPSHOT</version>
@@ -49,7 +49,13 @@
             <id>spout-repo</id>
             <url>http://repo.spout.org/</url>
         </repository>
+		<repository>
+                <id>sonatype-nexus-snapshots</id>
+                <name>Sonatype Nexus Snapshots</name>
+                <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
     </repositories>
+	
     <pluginRepositories>
         <pluginRepository>
             <id>spout-plugins</id>
@@ -64,11 +70,10 @@
             <artifactId>spoutapi</artifactId>
             <version>dev-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
+		<dependency>
+                <groupId>org.pircbotx</groupId>
+                <artifactId>pircbotx</artifactId>
+                <version>1.8-SNAPSHOT</version>
         </dependency>
     </dependencies>
     

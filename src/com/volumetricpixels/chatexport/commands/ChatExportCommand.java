@@ -12,22 +12,19 @@ import com.volumetricpixels.chatexport.ChatExport;
 public class ChatExportCommand implements CommandExecutor {
     
     @Override
-    public boolean processCommand(CommandSource source, Command cmd, CommandContext args) throws CommandException {
+    public void processCommand(CommandSource source, Command cmd, CommandContext args) throws CommandException {
         if (cmd.getPreferredName().compareToIgnoreCase("chatexport") == 0) {
             if (source.hasPermission("chatexport.toggle")) {
-                if (ChatExport.activated == true) {
-                    ChatExport.activated = false;
+                ChatExport.activated = !ChatExport.activated;
+                if (ChatExport.activated) {
                     source.sendMessage(ChatStyle.GRAY, "Chat exporting deactivated!");
-                } else if (ChatExport.activated == false) {
-                    ChatExport.activated = true;
+                } else if (!ChatExport.activated) {
                     source.sendMessage(ChatStyle.GRAY, "Chat exporting reactivated!");
                 }
             } else {
                 source.sendMessage(ChatStyle.RED, "You don't have permission to do that!");
             }
-            return true;
         }
-        return false;
     }
     
 }
