@@ -24,13 +24,6 @@ public class ChatExport extends CommonPlugin {
     private File configFile;
     
     @Override
-    public void onDisable() {
-        for (Protocol p : enabledProtocols) {
-            p.disable();
-        }
-    }
-    
-    @Override
     public void onEnable() {
         // Create the directory and files as needed and load config
         configFile = new File(getDataFolder(), "config.yml");
@@ -62,6 +55,15 @@ public class ChatExport extends CommonPlugin {
         
         // Set up commands
         this.getEngine().getRootCommand().addSubCommand(this.getEngine(), "chatexport").setExecutor(new ChatExportCommandExecutor());
+    }
+    
+    @Override
+    public void onDisable() {
+        activated = false;
+        for (Protocol p : enabledProtocols) {
+            p.disable();
+        }
+        enabledProtocols.clear();
     }
     
 }
