@@ -1,0 +1,7 @@
+name: ChatExport
+description: Export your Spout chat to other chat protocols
+author: VolumetricPixels
+version: 0.1
+main: com.volumetricpixels.chatexport.ChatExport
+load: STARTUP
+platform: SERVER
