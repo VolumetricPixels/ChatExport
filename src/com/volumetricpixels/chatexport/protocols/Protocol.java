@@ -26,5 +26,7 @@ public abstract class Protocol {
     public abstract void disable();
     
     public abstract void exportMessage(String sender, String message);
+
+    public abstract String getName();
     
 }

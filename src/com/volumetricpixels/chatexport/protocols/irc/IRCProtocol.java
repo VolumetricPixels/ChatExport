@@ -1,11 +1,10 @@
 package com.volumetricpixels.chatexport.protocols.irc;
 
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.pircbotx.Channel;
 import org.pircbotx.PircBotX;
-import org.pircbotx.exception.IrcException;
-import org.pircbotx.exception.NickAlreadyInUseException;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.MessageEvent;
 
@@ -20,7 +19,7 @@ import com.volumetricpixels.chatexport.protocols.ProtocolType;
  */
 public class IRCProtocol extends Protocol {
     
-    private PircBotX bot;
+    private Map<String, PircBotX> serverBots = new HashMap<String, PircBotX>();
     private IRCConfiguration conf;
 
     public IRCProtocol(IRCConfiguration config) {
@@ -30,35 +29,26 @@ public class IRCProtocol extends Protocol {
     
     @Override
     public void enable() {
-        this.bot = new PircBotX();
-        bot.setName(conf.nick);
-        bot.getListenerManager().addListener(new IRCListener());
-        try {
-            bot.connect(conf.server, conf.port);
-            for (String s : conf.channels) {
-                bot.joinChannel(s);
-            }
-            bot.sendMessage("NickServ", "id " + conf.password);
-        } catch (NickAlreadyInUseException e) {
-            Spout.getLogger().severe("[ChatExport] IRC nick already in use!");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (IrcException e) {
-            e.printStackTrace();
+        for (IRCServer s : conf.servers) {
+            PircBotX bot = new PircBotX();
+            bot.getListenerManager().addListener(new IRCListener());
+            serverBots.put(s.hostname + String.valueOf(s.port), bot);
         }
     }
 
     @Override
     public void disable() {
-        if (bot != null) {
+        for (PircBotX bot : serverBots.values()) {
             bot.disconnect();
         }
     }
 
     @Override
     public void exportMessage(String sender, String message) {
-        for (Channel c : bot.getChannels()) {
-            bot.sendMessage(c, sender + ": " + message);
+        for (PircBotX bot : serverBots.values()) {
+            for (Channel c : bot.getChannels()) {
+                bot.sendMessage(c, sender + ": " + message);
+            }
         }
     }
     
@@ -74,6 +64,11 @@ public class IRCProtocol extends Protocol {
             }
         }
         
+    }
+
+    @Override
+    public String getName() {
+        return "IRC";
     }
     
 }

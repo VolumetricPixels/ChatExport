@@ -9,18 +9,10 @@ import com.volumetricpixels.chatexport.protocols.ProtocolConfiguration;
  */
 public class IRCConfiguration extends ProtocolConfiguration {
     
-    final String server;
-    final int port;
-    final String nick;
-    final String password;
-    final List<String> channels;
+    final List<IRCServer> servers;
 
-    public IRCConfiguration(String server, int port, String nick, String password, List<String> channels) {
-        this.server = server;
-        this.port = port;
-        this.nick = nick;
-        this.password = password;
-        this.channels = channels;
+    public IRCConfiguration(List<IRCServer> servers) {
+        this.servers = servers;
     }
     
 }
