@@ -8,6 +8,7 @@ import org.pircbotx.PircBotX;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.MessageEvent;
 
+import org.spout.api.Server;
 import org.spout.api.Spout;
 
 import com.volumetricpixels.chatexport.ChatExport;
@@ -56,7 +57,7 @@ public class IRCProtocol extends Protocol {
         
         @Override
         public void onMessage(MessageEvent<PircBotX> e) {
-            Spout.getEngine().broadcastMessage("[" + e.getChannel().getName() + "]" + e.getUser().getNick() + ": " + e.getMessage());
+            ((Server) Spout.getEngine()).broadcastMessage("[" + e.getChannel().getName() + "]" + e.getUser().getNick() + ": " + e.getMessage());
             for (Protocol p : ChatExport.enabledProtocols) {
                 if (p.getType() != ProtocolType.IRC) {
                     p.exportMessage("[IRC] [" + e.getChannel().getName() + "] " + e.getUser().getNick(), e.getMessage());
